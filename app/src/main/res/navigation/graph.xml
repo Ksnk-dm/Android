@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ksnk.android.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.ksnk.android.ui.question.QuestionsFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_questions">
+        <action
+            android:id="@+id/action_questionFragment_to_themesFragment"
+            app:destination="@id/themesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/themesFragment"
+        android:name="com.ksnk.android.ui.themes.ThemesFragment"
+        android:label="ThemesFragment"
+        tools:layout="@layout/fragment_themes">
+        <action
+            android:id="@+id/action_themesFragment_to_questionThemeFragment"
+            app:destination="@id/questionThemeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/questionThemeFragment"
+        android:name="com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment"
+        android:label="ThemesQuestionFragment"
+        tools:layout="@layout/fragment_theme_questions" >
+    </fragment>
+</navigation>
