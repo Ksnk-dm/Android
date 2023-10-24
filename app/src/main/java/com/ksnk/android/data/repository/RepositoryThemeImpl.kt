@@ -19,7 +19,6 @@ class RepositoryThemeImpl(private val dao: ThemeDao) : RepositoryTheme {
         }
     }
 
-
     override suspend fun updateTheme(themeEntity: ThemeEntity) =
         withContext(Dispatchers.IO) {
             dao.update(themeEntity)

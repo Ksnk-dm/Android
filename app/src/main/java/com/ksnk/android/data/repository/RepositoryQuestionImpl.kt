@@ -1,9 +1,9 @@
 package com.ksnk.android.data.repository
 
 import androidx.lifecycle.LiveData
-import com.ksnk.android.model.QuestionCounts
 import com.ksnk.android.data.dao.QuestionDao
 import com.ksnk.android.data.entity.QuestionEntity
+import com.ksnk.android.model.QuestionCounts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -40,6 +40,9 @@ class RepositoryQuestionImpl(private val dao: QuestionDao) : RepositoryQuestion 
 
     override suspend fun getAllByTheme(themeId: Int?): List<QuestionEntity> =
         withContext(Dispatchers.IO) { dao.getAllByTheme(themeId) }
+
+    override suspend fun getRandomQuestions(): List<QuestionEntity> =
+        withContext(Dispatchers.IO) { dao.getRandomQuestions() }
 
     override suspend fun deleteAllQuestions() {
         TODO("Not yet implemented")

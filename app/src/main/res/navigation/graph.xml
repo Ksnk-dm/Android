@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_questionFragment_to_themesFragment"
             app:destination="@id/themesFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_questionThemeFragment"
+            app:destination="@id/questionThemeFragment" />
     </fragment>
 
     <fragment

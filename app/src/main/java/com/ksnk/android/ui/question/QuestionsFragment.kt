@@ -8,9 +8,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.ksnk.android.ui.base.BaseFragment
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentQuestionsBinding
+import com.ksnk.android.ext.navigateFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
+
     private val viewBinding by viewBinding(FragmentQuestionsBinding::bind)
     private val viewModel by viewModel<QuestionViewModel>()
 
@@ -25,8 +27,11 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
             })
 
             relativeLayoutThemes.setOnClickListener {
-                findNavController().navigate(R.id.action_questionFragment_to_themesFragment)
-                hideBottomNavigation()
+                navigateFragment(R.id.action_questionFragment_to_themesFragment)
+            }
+
+            relativeLayoutRandom.setOnClickListener {
+                navigateFragment(R.id.action_questionFragment_to_questionThemeFragment)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.ksnk.android.ui.themesQuestions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -20,16 +21,26 @@ class ThemesQuestionFragment : BaseFragment(R.layout.fragment_theme_questions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        hideBottomNavigation()
         with(viewBinding) {
 
             materialToolbar.setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
 
-            val themeId = arguments?.getLong(THEME_ID_KEY, 1)
+            val themeId = arguments?.getLong(THEME_ID_KEY, 777)
 
-            val questionList = viewModel.getAllByTheme(themeId?.toInt())
+             initAdapters(themeId?.toInt() ?: 777)
+
+
+
+        }
+    }
+
+    private fun initAdapters(themeId: Int) {
+
+        with(viewBinding) {
+            val questionList = if (themeId == 777) viewModel.getRandomQuestions() else viewModel.getAllByTheme(themeId)
             val pagerAdapter = ThemesQuestionAdapter(questionList, viewModel, viewPager)
 
             viewPager.adapter = pagerAdapter
@@ -59,7 +70,7 @@ class ThemesQuestionFragment : BaseFragment(R.layout.fragment_theme_questions) {
         }
     }
 
-    companion object{
+    companion object {
         const val THEME_ID_KEY = "themeId"
     }
 

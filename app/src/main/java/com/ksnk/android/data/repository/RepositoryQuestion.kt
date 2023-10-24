@@ -1,8 +1,8 @@
 package com.ksnk.android.data.repository
 
 import androidx.lifecycle.LiveData
-import com.ksnk.android.model.QuestionCounts
 import com.ksnk.android.data.entity.QuestionEntity
+import com.ksnk.android.model.QuestionCounts
 
 interface RepositoryQuestion {
 
@@ -15,4 +15,5 @@ interface RepositoryQuestion {
     fun getQuestionCountForTheme(themeId: Long): LiveData<QuestionCounts>
     suspend fun getQuestionCountFrom(): LiveData<List<QuestionEntity>>
     suspend fun getAllByTheme(themeId: Int?): List<QuestionEntity>
+    suspend fun getRandomQuestions(): List<QuestionEntity>
 }

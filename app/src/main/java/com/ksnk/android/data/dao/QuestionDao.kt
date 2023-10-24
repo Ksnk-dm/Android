@@ -24,6 +24,9 @@ interface QuestionDao {
     @Query("SELECT * FROM questionEntity")
     fun getAll(): LiveData<List<QuestionEntity>>
 
+    @Query("SELECT * FROM questionEntity ORDER BY RANDOM() LIMIT 20")
+    fun getRandomQuestions(): List<QuestionEntity>
+
     @Query("SELECT COUNT(*) as total, SUM(CASE WHEN isOpen = 1 THEN 1 ELSE 0 END) as openCount, SUM(CASE WHEN isComplete = 1 THEN 1 ELSE 0 END) as completeCount FROM questionEntity WHERE themeId = :themeId")
     fun getQuestionCountsForTheme(themeId: Long): LiveData<QuestionCounts>
 

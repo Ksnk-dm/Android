@@ -1,6 +1,8 @@
 package com.ksnk.android.ui.themesQuestions
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.repository.RepositoryQuestion
@@ -14,11 +16,14 @@ class ThemesQuestionViewModel(
 ) : ViewModel() {
 
     fun getAllByTheme(themeId: Int?): List<QuestionEntity> =
-         runBlocking { repositoryQuestion.getAllByTheme(themeId) }
+        runBlocking { repositoryQuestion.getAllByTheme(themeId) }
 
     fun updateQuestion(question: QuestionEntity) =
         viewModelScope.launch { repositoryQuestion.updateQuestion(question) }
 
     fun getThemeById(id: Long) =
         runBlocking { repositoryTheme.getThemeById(id) }
+
+    fun getRandomQuestions(): List<QuestionEntity> =
+        runBlocking { repositoryQuestion.getRandomQuestions() }
 }
