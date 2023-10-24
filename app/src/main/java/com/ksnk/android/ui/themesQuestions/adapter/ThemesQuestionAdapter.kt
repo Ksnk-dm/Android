@@ -12,7 +12,6 @@ class ThemesQuestionAdapter(
     private val viewPager2: ViewPager2
 ) : RecyclerView.Adapter<ThemesQuestionViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemesQuestionViewHolder =
         ThemesQuestionViewHolder.create(parent, viewModel, viewPager2)
 

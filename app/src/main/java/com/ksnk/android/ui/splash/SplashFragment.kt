@@ -1,8 +1,11 @@
 package com.ksnk.android.ui.splash
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,54 +18,83 @@ import com.ksnk.android.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
+
     private val viewModel by viewModel<SplashViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
+            if (isInternetAvailable()) loadData()
+            else if (questionList.isNotEmpty()) findNavController().navigate(R.id.action_splashFragment_to_questionFragment) else
+                findNavController().navigate(R.id.action_splashFragment_to_errorFragment)
+        })
+    }
 
-        Log.d("MESSAGE::: ", viewModel.getThemeCount().toString() + " " + viewModel.getQuestionCount().toString())
-
+    private fun loadData() {
         val database = FirebaseDatabase.getInstance()
-        val reference = database.reference // Ссылка на корневой узел базы данных
+        val reference = database.reference
 
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val themes = mutableListOf<ThemeEntity>()
                 val questions = mutableListOf<QuestionEntity>()
 
-
-
-                for (themeSnapshot in dataSnapshot.child("themes").children) {
-                    val themeId = themeSnapshot.child("id").getValue(String::class.java)
+                for (themeSnapshot in dataSnapshot.child(THEMES_PATH).children) {
+                    val themeId = themeSnapshot.child(ID_PATH).getValue(String::class.java)
                     val themeName = themeSnapshot.key
-                    val themeEntity = ThemeEntity(themeId?.toLong() ?: 0, themeName ?: "")
-                    themes.add(themeEntity)
-                    Log.d("MESSAGE::: 1", dataSnapshot.child("themes").children.toList().size.toString())
-                    Log.d("MESSAGE::: 2", viewModel.getThemeCount().toString())
-//                    if (viewModel.getThemeCount() < dataSnapshot.child("themes").children.toList().size) {
-//                       // viewModel.insertTheme(themeEntity)
-//                        viewModel.saveThemeCount(dataSnapshot.child("themes").children.toList().size)
-//                    }
 
+                    themes.add(
+                        ThemeEntity(
+                            themeId?.toLong() ?: 0,
+                            themeName ?: ""
+                        )
+                    )
 
-                    for (questionSnapshot in themeSnapshot.child("questions").children) {
-                        val questionName = questionSnapshot.key
+                    for (questionSnapshot in themeSnapshot.child(QUESTIONS_PATH).children) {
                         val questionData = questionSnapshot.value as Map<String, Any>
-                        val questionText = questionData["question"] as String
-                        val answerText = questionData["answer"] as String
+                        val questionText = questionData[QUESTION_KEY] as String
+                        val answerText = questionData[ANSWER_KEY] as String
 
-                        val questionEntity = QuestionEntity(themeId = themeId?.toLong() ?: 0, question = questionText, answer = answerText)
-                        questions.add(questionEntity)
+                        questions.add(
+                            QuestionEntity(
+                                themeId = themeId?.toLong() ?: 0,
+                                question = questionText,
+                                answer = answerText
+                            )
+                        )
                     }
                 }
+
                 if (themes.size > viewModel.getThemeCount()) viewModel.insertThemes(themes)
                 if (questions.size > viewModel.getQuestionCount()) viewModel.insertQuestions(questions)
+
+                runCatching {
+                    findNavController().navigate(R.id.action_splashFragment_to_questionFragment)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("MESSAGE::: ", error.details)
+                findNavController().navigate(R.id.action_splashFragment_to_errorFragment)
             }
         })
+    }
 
-        findNavController().navigate(R.id.action_splashFragment_to_questionFragment)
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+
+    companion object {
+        const val THEMES_PATH = "themes"
+        const val ID_PATH = "id"
+        const val QUESTIONS_PATH = "questions"
+
+        const val QUESTION_KEY = "question"
+        const val ANSWER_KEY = "answer"
+
+        const val THEME_COUNT_KEY = "theme_count"
+        const val QUESTION_COUNT_KEY = "question_count"
     }
 }

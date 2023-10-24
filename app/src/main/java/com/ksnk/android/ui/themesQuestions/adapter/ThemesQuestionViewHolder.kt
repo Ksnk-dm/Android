@@ -17,23 +17,30 @@ class ThemesQuestionViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: QuestionEntity) {
-        binding.textViewQuestion.text = item.question
-        binding.textViewAnswer.text = item.answer.parseAsHtml()
-        binding.buttonAnswer.setOnClickListener {
-            binding.rlAnswer.visibility = View.VISIBLE
-            binding.buttonNext.visibility = View.VISIBLE
-            item.isOpen = true
-            viewModel.updateQuestion(item)
-            binding.buttonAnswer.visibility = View.GONE
+        with(binding) {
+            textViewQuestion.text = item.question
+            textViewAnswer.text = item.answer.parseAsHtml()
+            buttonAnswer.setOnClickListener {
+                rlAnswer.visibility = View.VISIBLE
+                buttonNext.visibility = View.VISIBLE
+                item.isOpen = true
+                viewModel.updateQuestion(item)
+                buttonAnswer.visibility = View.GONE
+            }
+
+            buttonNext.setOnClickListener {
+                viewPager.currentItem = viewPager.currentItem.plus(1)
+            }
         }
 
-        binding.buttonNext.setOnClickListener {
-            viewPager.currentItem = viewPager.currentItem + 1
-        }
     }
 
     companion object {
-        fun create(parent: ViewGroup, viewModel: ThemesQuestionViewModel, viewPager: ViewPager2): ThemesQuestionViewHolder {
+        fun create(
+            parent: ViewGroup,
+            viewModel: ThemesQuestionViewModel,
+            viewPager: ViewPager2
+        ): ThemesQuestionViewHolder {
             val binding = ViewPagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return ThemesQuestionViewHolder(binding, viewModel, viewPager)
         }

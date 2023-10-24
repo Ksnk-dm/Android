@@ -1,7 +1,6 @@
 package com.ksnk.android.ui.question
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,13 +18,12 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
             viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
-                Log.d("MESSAGE::: ", questionList.size.toString())
                 progressBar.max = questionList.size
                 viewModel.getQuestionCountForIsOpen().observe(requireActivity(), Observer { count ->
-                    Log.d("MESSAGE:::22 ", count.size.toString())
                     progressBar.progress = count.size
                 })
             })
+
             relativeLayoutThemes.setOnClickListener {
                 findNavController().navigate(R.id.action_questionFragment_to_themesFragment)
                 hideBottomNavigation()

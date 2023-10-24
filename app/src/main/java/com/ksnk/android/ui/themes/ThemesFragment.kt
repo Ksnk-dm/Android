@@ -1,7 +1,6 @@
 package com.ksnk.android.ui.themes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -18,23 +17,16 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
 
     private val viewBinding by viewBinding(FragmentThemesBinding::bind)
     private val viewModel by viewModel<ThemesViewModel>()
-    val listThemes = arrayListOf<Themes>(
-//        Themes(1, 1, "тема 1", 12, 2, 3),
-//        Themes(2, 2, "тема 2", 3, 0, 11),
-//        Themes(3, 3, "тема 3", 22, 8, 22),
-//        Themes(4, 4, "тема 4", 11, 3, 1),
-//        Themes(5, 5, "тема 5", 4, 8, 4),
-//        Themes(6, 6, "тема 6", 8, 5, 8),
-//        Themes(7, 7, "тема 7", 6, 0, 6),
-    )
+    private val listThemes = arrayListOf<Themes>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
+
             materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
-               // hideBottomNavigation()
             }
+
             listThemes.clear()
             viewModel.getAllThemes().observe(requireActivity(), Observer { themesList ->
                 themesList.forEach {
@@ -45,9 +37,7 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
                         rv.layoutManager = LinearLayoutManager(context)
                     })
                 }
-
             })
-
         }
     }
 }

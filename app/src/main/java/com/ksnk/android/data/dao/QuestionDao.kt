@@ -2,7 +2,7 @@ package com.ksnk.android.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.ksnk.android.data.QuestionCounts
+import com.ksnk.android.model.QuestionCounts
 import com.ksnk.android.data.entity.QuestionEntity
 
 @Dao

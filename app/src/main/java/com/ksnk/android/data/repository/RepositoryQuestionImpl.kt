@@ -1,7 +1,7 @@
 package com.ksnk.android.data.repository
 
 import androidx.lifecycle.LiveData
-import com.ksnk.android.data.QuestionCounts
+import com.ksnk.android.model.QuestionCounts
 import com.ksnk.android.data.dao.QuestionDao
 import com.ksnk.android.data.entity.QuestionEntity
 import kotlinx.coroutines.Dispatchers

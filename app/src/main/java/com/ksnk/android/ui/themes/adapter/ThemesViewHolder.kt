@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ksnk.android.R
-import com.ksnk.android.model.Themes
 import com.ksnk.android.databinding.ThemeItemBinding
+import com.ksnk.android.model.Themes
+import com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment
 
 class ThemesViewHolder(
     private val binding: ThemeItemBinding,
@@ -25,13 +26,17 @@ class ThemesViewHolder(
         binding.textViewAll.text = item.allQuestions.toString()
         binding.textViewOpen.text = item.openQuestions.toString()
         binding.root.setOnClickListener {
-            val bundle = bundleOf("themeId" to item.id)
+            val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to item.id)
             fragment.findNavController().navigate(R.id.action_themesFragment_to_questionThemeFragment, bundle)
         }
     }
 
     companion object {
-        fun create(parent: ViewGroup, fragment: Fragment): ThemesViewHolder {
+
+        fun create(
+            parent: ViewGroup,
+            fragment: Fragment
+        ): ThemesViewHolder {
             val binding = ThemeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return ThemesViewHolder(binding, fragment)
         }

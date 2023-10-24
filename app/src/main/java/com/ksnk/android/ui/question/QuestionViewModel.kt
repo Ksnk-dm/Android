@@ -12,7 +12,6 @@ class QuestionViewModel(
     private val repositoryQuestion: RepositoryQuestion
 ) : ViewModel() {
 
-
     fun getQuestionCountForIsOpen(): LiveData<List<QuestionEntity>> =
         liveData { emitSource(repositoryQuestion.getQuestionCountFrom()) }
 

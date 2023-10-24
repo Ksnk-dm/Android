@@ -13,7 +13,7 @@ class CustomTabAdapter (private val context: Context) {
     fun createTabView(position: Int): View {
         val binding = CustomTabItemBinding.inflate(LayoutInflater.from(context))
         val customView = binding.root
-        binding.tabNumber.text = (position + 1).toString()
+        binding.tabNumber.text = (position.plus(1)).toString()
 
         return customView
     }
