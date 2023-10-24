@@ -1,10 +1,9 @@
 package com.ksnk.android.ui.themes.adapter
 
-import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ksnk.android.BaseFragment
-import com.ksnk.android.Themes
+import com.ksnk.android.ui.base.BaseFragment
+import com.ksnk.android.model.Themes
 
 class ThemesAdapter(var items: List<Themes>, private val fragment: BaseFragment) : RecyclerView.Adapter<ThemesViewHolder>() {
 

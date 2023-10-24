@@ -16,7 +16,8 @@ class App: Application() {
             modules(
                 viewModelModule,
                 repositoryModule,
-                databaseModule
+                databaseModule,
+                sharedPrefsModule
             )
         }
     }

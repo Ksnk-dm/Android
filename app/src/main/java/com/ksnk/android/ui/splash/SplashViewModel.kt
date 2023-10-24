@@ -1,5 +1,6 @@
 package com.ksnk.android.ui.splash
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
@@ -12,8 +13,27 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(
     private val repositoryTheme: RepositoryTheme,
-    private val repositoryQuestion: RepositoryQuestion
+    private val repositoryQuestion: RepositoryQuestion,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
+
+    fun saveThemeCount(count: Int) =
+        sharedPreferences.edit().putInt("theme_count", count).apply()
+
+    fun getThemeCount(): Int =
+        sharedPreferences.getInt("theme_count", 0)
+
+    private fun saveQuestionCount(count: Int) =
+        sharedPreferences.edit().putInt("question_count", count).apply()
+
+    fun getQuestionCount(): Int =
+        sharedPreferences.getInt("question_count", 0)
+
+    fun insertThemes(themes: List<ThemeEntity>) =
+        viewModelScope.launch {
+            saveThemeCount(themes.size)
+            repositoryTheme.insertThemes(themes)
+        }
 
     fun insertTheme(theme: ThemeEntity) =
         viewModelScope.launch {
@@ -27,6 +47,7 @@ class SplashViewModel(
 
     fun insertQuestions(list: List<QuestionEntity>) =
         viewModelScope.launch {
+            saveQuestionCount(list.size)
             repositoryQuestion.insertQuestions(list)
         }
 }

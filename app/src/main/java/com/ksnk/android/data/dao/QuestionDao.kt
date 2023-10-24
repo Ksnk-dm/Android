@@ -12,7 +12,7 @@ interface QuestionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(questionEntity: QuestionEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertList(list: List<QuestionEntity>)
 
     @Delete
@@ -27,9 +27,9 @@ interface QuestionDao {
     @Query("SELECT COUNT(*) as total, SUM(CASE WHEN isOpen = 1 THEN 1 ELSE 0 END) as openCount, SUM(CASE WHEN isComplete = 1 THEN 1 ELSE 0 END) as completeCount FROM questionEntity WHERE themeId = :themeId")
     fun getQuestionCountsForTheme(themeId: Long): LiveData<QuestionCounts>
 
-    @Query("SELECT * FROM questionEntity WHERE isComplete = 1")
+    @Query("SELECT * FROM questionEntity WHERE isOpen = 1")
     fun getQuestionCountFrom(): LiveData<List<QuestionEntity>>
 
     @Query("SELECT * FROM questionEntity WHERE themeId = :themeId")
-    fun getAllByTheme(themeId: Int?): LiveData<List<QuestionEntity>>
+    fun getAllByTheme(themeId: Int?): List<QuestionEntity>
 }

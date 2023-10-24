@@ -14,5 +14,5 @@ interface RepositoryQuestion {
     suspend fun deleteAllQuestions()
     fun getQuestionCountForTheme(themeId: Long): LiveData<QuestionCounts>
     suspend fun getQuestionCountFrom(): LiveData<List<QuestionEntity>>
-    suspend fun getAllByTheme(themeId: Int?): LiveData<List<QuestionEntity>>
+    suspend fun getAllByTheme(themeId: Int?): List<QuestionEntity>
 }

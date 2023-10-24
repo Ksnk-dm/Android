@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.ksnk.android.BaseFragment
+import com.ksnk.android.ui.base.BaseFragment
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentQuestionsBinding
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,6 +22,7 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
                 Log.d("MESSAGE::: ", questionList.size.toString())
                 progressBar.max = questionList.size
                 viewModel.getQuestionCountForIsOpen().observe(requireActivity(), Observer { count ->
+                    Log.d("MESSAGE:::22 ", count.size.toString())
                     progressBar.progress = count.size
                 })
             })

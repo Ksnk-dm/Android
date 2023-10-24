@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ksnk.android.R
-import com.ksnk.android.Themes
+import com.ksnk.android.model.Themes
 import com.ksnk.android.databinding.ThemeItemBinding
 
 class ThemesViewHolder(

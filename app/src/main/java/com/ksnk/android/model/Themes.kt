@@ -1,4 +1,4 @@
-package com.ksnk.android
+package com.ksnk.android.model
 
 data class Themes(
     val id: Long,

@@ -1,12 +1,12 @@
-package com.ksnk.android
+package com.ksnk.android.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.ksnk.android.listeners.BottomNavigationListener
+import com.ksnk.android.R
 import com.ksnk.android.databinding.ActivityMainBinding
-import com.ksnk.android.databinding.FragmentQuestionsBinding
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationListener {
@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationListener {
 
     }
 
+    override fun onBackPressed() {
+       // super.onBackPressed()
+    }
+
     override fun hideBottomNavigationView() {
-//        val layoutParams = viewBinding.fragmentContainerView.layoutParams as ConstraintLayout.LayoutParams
-//        layoutParams.bottomToTop = -1  // -1 означает, что это ограничение должно быть убрано
-//        viewBinding.fragmentContainerView.layoutParams = layoutParams
         viewBinding.bottomNavigationView.visibility = View.GONE
     }
 

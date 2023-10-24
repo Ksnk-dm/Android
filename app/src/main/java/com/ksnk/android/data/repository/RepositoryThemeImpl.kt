@@ -13,6 +13,12 @@ class RepositoryThemeImpl(private val dao: ThemeDao) : RepositoryTheme {
             dao.insert(themeEntity)
         }
 
+    override suspend fun insertThemes(themeEntity: List<ThemeEntity>) {
+        withContext(Dispatchers.IO) {
+            dao.insertList(themeEntity)
+        }
+    }
+
 
     override suspend fun updateTheme(themeEntity: ThemeEntity) =
         withContext(Dispatchers.IO) {

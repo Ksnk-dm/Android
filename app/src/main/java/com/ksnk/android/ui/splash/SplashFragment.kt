@@ -8,63 +8,19 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.ksnk.android.BaseFragment
 import com.ksnk.android.R
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.entity.ThemeEntity
+import com.ksnk.android.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     private val viewModel by viewModel<SplashViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        findNavController().navigate(R.id.action_splashFragment_to_questionFragment)
-//        val database = FirebaseDatabase.getInstance()
-//        val reference = database.getReference("themes")
-//
-//        val newTheme = Themes(1,1,"title") // Здесь создайте объект, который вы хотите добавить в базу данных
-//
-//        val key = reference.push().key // Создайте уникальный ключ для новой записи
-//        key?.let {
-//            reference.child(it).setValue(newTheme) // Устанавливаем значение по ключу
-//                .addOnSuccessListener {
-//                    // Значение успешно добавлено
-//                }
-//                .addOnFailureListener {
-//                    // Произошла ошибка при добавлении значения
-//                }
-//        }
-//        val database = FirebaseDatabase.getInstance()
-//        val reference = database.getReference("themes")
-//
-//        val desireList = mutableListOf<Themes>()
-//        // Создаем новую тему
-//        val newTheme = Themes(1, 1, "Название темы")
-//
-//        val key = reference.push().key // Создаем уникальный ключ для темы
-//        key?.let {
-//            val themeReference = reference.child(it) // Создаем ссылку на узел темы
-//
-//            // Теперь мы добавим вопросы внутри этой темы
-//            val question1 = Question("Вопрос 1", "Ответ на вопрос 1")
-//
-//
-//            val question2 = Question("Вопрос 2",  "Ответ на вопрос 2")
-//
-//            val questionsMap = mapOf(
-//                "question1" to question1,
-//                "question2" to question2
-//            )
-//
-//            // Устанавливаем вопросы внутри темы
-//            themeReference.child("questions").setValue(questionsMap)
-//                .addOnSuccessListener {
-//                    // Вопросы успешно добавлены в тему
-//                }
-//                .addOnFailureListener {
-//                    // Произошла ошибка при добавлении вопросов
-//                }
-//        }
+
+        Log.d("MESSAGE::: ", viewModel.getThemeCount().toString() + " " + viewModel.getQuestionCount().toString())
+
         val database = FirebaseDatabase.getInstance()
         val reference = database.reference // Ссылка на корневой узел базы данных
 
@@ -73,13 +29,20 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 val themes = mutableListOf<ThemeEntity>()
                 val questions = mutableListOf<QuestionEntity>()
 
+
+
                 for (themeSnapshot in dataSnapshot.child("themes").children) {
                     val themeId = themeSnapshot.child("id").getValue(String::class.java)
                     val themeName = themeSnapshot.key
                     val themeEntity = ThemeEntity(themeId?.toLong() ?: 0, themeName ?: "")
+                    themes.add(themeEntity)
+                    Log.d("MESSAGE::: 1", dataSnapshot.child("themes").children.toList().size.toString())
+                    Log.d("MESSAGE::: 2", viewModel.getThemeCount().toString())
+//                    if (viewModel.getThemeCount() < dataSnapshot.child("themes").children.toList().size) {
+//                       // viewModel.insertTheme(themeEntity)
+//                        viewModel.saveThemeCount(dataSnapshot.child("themes").children.toList().size)
+//                    }
 
-                    // Сохраните тему в базу данных Room
-                    viewModel.insertTheme(themeEntity)
 
                     for (questionSnapshot in themeSnapshot.child("questions").children) {
                         val questionName = questionSnapshot.key
@@ -91,13 +54,15 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                         questions.add(questionEntity)
                     }
                 }
-
-                viewModel.insertQuestions(questions)
+                if (themes.size > viewModel.getThemeCount()) viewModel.insertThemes(themes)
+                if (questions.size > viewModel.getQuestionCount()) viewModel.insertQuestions(questions)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.d("MESSAGE::: ", error.details)
             }
         })
+
+        findNavController().navigate(R.id.action_splashFragment_to_questionFragment)
     }
 }

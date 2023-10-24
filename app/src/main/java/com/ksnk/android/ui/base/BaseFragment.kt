@@ -1,8 +1,9 @@
-package com.ksnk.android
+package com.ksnk.android.ui.base
 
 import android.content.Context
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.ksnk.android.listeners.BottomNavigationListener
 
 abstract class BaseFragment(
     @LayoutRes layout: Int
