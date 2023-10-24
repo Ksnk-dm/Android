@@ -13,4 +13,10 @@
         <item name="android:statusBarColor">#323131</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="CustomProgressBar" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/custom_progress_bar</item>
+        <item name="android:minHeight">10dp</item> <!-- Измените толщину полосы изменяя значение minHeight -->
+        <item name="android:maxHeight">10dp</item> <!-- То же самое, измените максимальную высоту -->
+    </style>
 </resources>

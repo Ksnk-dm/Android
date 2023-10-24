@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="10dp" /> <!-- Устанавливаем радиус закругления углов -->
+            <solid android:color="#777777" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="10dp" /> <!-- Устанавливаем радиус закругления углов -->
+                <solid android:color="#8BC34A" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>
