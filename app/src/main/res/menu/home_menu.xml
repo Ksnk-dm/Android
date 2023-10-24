@@ -5,21 +5,27 @@
     <item
         android:icon="@drawable/baseline_library_books_24"
         app:showAsAction="never"
+        android:enabled="false"
         android:title="TODO" />
     <item
         android:icon="@drawable/baseline_auto_graph_24"
         app:showAsAction="never"
+        android:enabled="false"
         android:title="Item" />
     <item
+        android:id="@+id/questionsItem"
         android:icon="@drawable/baseline_question_answer_24"
         app:showAsAction="never"
+        android:enabled="true"
         android:title="Item" />
     <item
         android:icon="@drawable/baseline_school_24"
         app:showAsAction="never"
+        android:enabled="false"
         android:title="Item" />
     <item
         android:icon="@drawable/baseline_manage_accounts_24"
         app:showAsAction="never"
+        android:enabled="false"
         android:title="Item" />
 </menu>

@@ -1,6 +1,8 @@
 package com.ksnk.android.di
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.ksnk.android.data.DataBase
 import com.ksnk.android.data.dao.QuestionDao
@@ -38,6 +40,10 @@ val databaseModule = module {
     single { provideThemeDao(get()) }
 }
 
+val sharedPrefsModule = module {
+    single<SharedPreferences> { get<Context>().getSharedPreferences("my_prefs", Context.MODE_PRIVATE) }
+}
+
 val repositoryModule = module {
 
     fun provideQuestionRepository(dao: QuestionDao): RepositoryQuestion {
@@ -52,7 +58,7 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { SplashViewModel(get(), get()) }
+    viewModel { SplashViewModel(get(), get(), get()) }
     viewModel { ThemesViewModel(get(), get()) }
     viewModel { QuestionViewModel(get(), get()) }
     viewModel { ThemesQuestionViewModel(get(), get()) }

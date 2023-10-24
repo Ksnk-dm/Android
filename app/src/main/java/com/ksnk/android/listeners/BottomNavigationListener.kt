@@ -1,4 +1,4 @@
-package com.ksnk.android
+package com.ksnk.android.listeners
 
 interface BottomNavigationListener {
     fun hideBottomNavigationView()

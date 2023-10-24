@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_splashFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
     </fragment>
 
     <fragment
@@ -22,6 +25,9 @@
         <action
             android:id="@+id/action_questionFragment_to_themesFragment"
             app:destination="@id/themesFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_questionThemeFragment"
+            app:destination="@id/questionThemeFragment" />
     </fragment>
 
     <fragment
@@ -38,6 +44,15 @@
         android:id="@+id/questionThemeFragment"
         android:name="com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment"
         android:label="ThemesQuestionFragment"
-        tools:layout="@layout/fragment_theme_questions" >
+        tools:layout="@layout/fragment_theme_questions" />
+
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="com.ksnk.android.ui.error.ErrorFragment"
+        android:label="ErrorFragment"
+        tools:layout="@layout/fragment_error" >
+        <action
+            android:id="@+id/action_errorFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
 </navigation>

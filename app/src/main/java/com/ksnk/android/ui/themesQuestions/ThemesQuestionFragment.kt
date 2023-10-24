@@ -1,22 +1,15 @@
 package com.ksnk.android.ui.themesQuestions
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.ksnk.android.BaseFragment
 import com.ksnk.android.R
-import com.ksnk.android.databinding.CustomTabItemBinding
 import com.ksnk.android.databinding.FragmentThemeQuestionsBinding
+import com.ksnk.android.ui.base.BaseFragment
 import com.ksnk.android.ui.themesQuestions.adapter.CustomTabAdapter
 import com.ksnk.android.ui.themesQuestions.adapter.ThemesQuestionAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -28,72 +21,57 @@ class ThemesQuestionFragment : BaseFragment(R.layout.fragment_theme_questions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        hideBottomNavigation()
+        with(viewBinding) {
 
-        viewBinding.materialToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            materialToolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            val themeId = arguments?.getLong(THEME_ID_KEY, 777)
+
+             initAdapters(themeId?.toInt() ?: 777)
+
+
+
         }
+    }
 
-        val themeId = arguments?.getInt("themeId", 1)
+    private fun initAdapters(themeId: Int) {
 
-        viewModel.getAllByTheme(themeId).observe(requireActivity(), Observer { questionList ->
+        with(viewBinding) {
+            val questionList = if (themeId == 777) viewModel.getRandomQuestions() else viewModel.getAllByTheme(themeId)
+            val pagerAdapter = ThemesQuestionAdapter(questionList, viewModel, viewPager)
 
-            val pagerAdapter = ThemesQuestionAdapter(questionList, viewModel)
-            viewBinding.viewPager.adapter = pagerAdapter
-            val customTabAdapter = CustomTabAdapter(viewBinding.tabLayout.context)
-            TabLayoutMediator(viewBinding.tabLayout, viewBinding.viewPager) { tab, position ->
+            viewPager.adapter = pagerAdapter
+
+            val customTabAdapter = CustomTabAdapter(tabLayout.context)
+
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 val customView = customTabAdapter.createTabView(position)
                 tab.customView = customView
-                if (position == viewBinding.viewPager.currentItem)
-                    customView.setBackgroundResource(R.drawable.circular_border)
+
+                if (position == viewPager.currentItem) customView.setBackgroundResource(R.drawable.circular_border)
                 else customView.setBackgroundResource(R.drawable.circular_border)
+
             }.attach()
 
-            viewBinding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
 
-                    val selectedTabView = viewBinding.tabLayout.getTabAt(position)?.customView
-                    val unselectedTabViews = viewBinding.tabLayout.getTabAt(viewBinding.viewPager.currentItem)?.customView
+                    val selectedTabView = tabLayout.getTabAt(position)?.customView
+                    val unselectedTabViews = tabLayout.getTabAt(viewPager.currentItem)?.customView
 
                     selectedTabView?.let { it.setBackgroundResource(R.drawable.circular_border) }
                     unselectedTabViews?.let { customTabAdapter.deselectTabView(it) }
                 }
             })
-        })
-
-
-
-
-            val fixedWidthInPixels = 150
-            val fixedHeightInPixels = 100
-
-            for (number in numbers) {
-                val textView = TextView(requireContext())
-
-                val layoutParams = ViewGroup.MarginLayoutParams(
-                    fixedWidthInPixels,
-                    fixedHeightInPixels
-                )
-
-                val leftMarginInPixels = 20
-                val rightMarginInPixels = 20
-
-                layoutParams.leftMargin = leftMarginInPixels
-                layoutParams.rightMargin = rightMarginInPixels
-
-                textView.layoutParams = layoutParams
-                textView.setBackgroundResource(R.drawable.circular_border)
-                textView.text = number.toString()
-                textView.textSize = 24f
-                textView.setTextColor(Color.WHITE)
-                textView.setPadding(16, 0, 16, 0)
-
-                // Устанавливаем текст в центре
-                textView.gravity = Gravity.CENTER
-                textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
-
-            }
+        }
     }
+
+    companion object {
+        const val THEME_ID_KEY = "themeId"
+    }
+
 }
