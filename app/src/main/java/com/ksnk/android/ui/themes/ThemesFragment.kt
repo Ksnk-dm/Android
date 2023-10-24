@@ -35,6 +35,7 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
                         val adapter = ThemesAdapter(listThemes, this@ThemesFragment)
                         rv.adapter = adapter
                         rv.layoutManager = LinearLayoutManager(context)
+                        adapter.notifyDataSetChanged()
                     })
                 }
             })

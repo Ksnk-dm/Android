@@ -21,6 +21,10 @@ class ThemesQuestionViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(item: QuestionEntity, position: Int) {
         with(binding) {
+            rlAnswer.visibility = View.GONE
+            buttonAnswer.visibility = View.VISIBLE
+            buttonNext.visibility = View.GONE
+
             textViewQuestion.text = item.question
             val theme: ThemeEntity = viewModel.getThemeById(item.themeId)
 
@@ -37,10 +41,11 @@ class ThemesQuestionViewHolder(
             }
 
             buttonNext.setOnClickListener {
+                item.isOpen = true
+                viewModel.updateQuestion(item)
                 viewPager.currentItem = viewPager.currentItem.plus(1)
             }
         }
-
     }
 
     companion object {
