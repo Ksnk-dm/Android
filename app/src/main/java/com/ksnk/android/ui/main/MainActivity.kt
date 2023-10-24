@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        viewBinding.bottomNavigationView.selectedItemId = R.id.questionsItem
     }
 
     override fun onBackPressed() {

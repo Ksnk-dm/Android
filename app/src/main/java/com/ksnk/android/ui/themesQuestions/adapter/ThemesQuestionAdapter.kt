@@ -19,5 +19,5 @@ class ThemesQuestionAdapter(
         questionList.size
 
     override fun onBindViewHolder(holder: ThemesQuestionViewHolder, position: Int) =
-        holder.bind(questionList[position])
+        holder.bind(questionList[position], position)
 }

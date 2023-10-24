@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,20 +15,33 @@ import com.google.firebase.database.ValueEventListener
 import com.ksnk.android.R
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.entity.ThemeEntity
+import com.ksnk.android.databinding.FragmentSplashBinding
 import com.ksnk.android.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     private val viewModel by viewModel<SplashViewModel>()
+    private val viewBinding by viewBinding(FragmentSplashBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
-            if (isInternetAvailable()) loadData()
-            else if (questionList.isNotEmpty()) findNavController().navigate(R.id.action_splashFragment_to_questionFragment) else
-                findNavController().navigate(R.id.action_splashFragment_to_errorFragment)
-        })
+        hideBottomNavigation()
+
+
+        viewBinding.animationView.addAnimatorUpdateListener { valueAnimator ->
+            val progress = valueAnimator.animatedFraction
+            val currentFrame = (progress * viewBinding.animationView.maxFrame).toInt()
+            viewBinding.progressBar2.progress = currentFrame
+
+            if (viewBinding.progressBar2.progress == 30) {
+                viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
+                    if (isInternetAvailable()) loadData()
+                    else if (questionList.isNotEmpty()) findNavController().navigate(R.id.action_splashFragment_to_questionFragment) else
+                        findNavController().navigate(R.id.action_splashFragment_to_errorFragment)
+                })
+            }
+        }
     }
 
     private fun loadData() {

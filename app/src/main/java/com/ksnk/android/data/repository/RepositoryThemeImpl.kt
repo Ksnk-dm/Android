@@ -28,6 +28,9 @@ class RepositoryThemeImpl(private val dao: ThemeDao) : RepositoryTheme {
     override suspend fun getAllThemes(): LiveData<List<ThemeEntity>> =
         withContext(Dispatchers.IO) { dao.getAll() }
 
+    override suspend fun getThemeById(id: Long): ThemeEntity =
+        withContext(Dispatchers.IO) {dao.getThemeById(id)}
+
     override suspend fun deleteTheme(themeEntity: ThemeEntity) =
         withContext(Dispatchers.IO) {
             dao.delete(themeEntity)

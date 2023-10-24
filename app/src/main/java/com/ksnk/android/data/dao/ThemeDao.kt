@@ -13,6 +13,9 @@ interface ThemeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertList(themes: List<ThemeEntity>)
 
+    @Query("SELECT * FROM themeEntity WHERE themeId = :themeId")
+    suspend fun getThemeById(themeId: Long): ThemeEntity
+
     @Delete
     suspend fun delete(themeEntity: ThemeEntity)
 

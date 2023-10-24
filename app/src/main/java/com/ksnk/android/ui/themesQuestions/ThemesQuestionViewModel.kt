@@ -18,4 +18,7 @@ class ThemesQuestionViewModel(
 
     fun updateQuestion(question: QuestionEntity) =
         viewModelScope.launch { repositoryQuestion.updateQuestion(question) }
+
+    fun getThemeById(id: Long) =
+        runBlocking { repositoryTheme.getThemeById(id) }
 }

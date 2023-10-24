@@ -1,5 +1,6 @@
 package com.ksnk.android.ui.themesQuestions.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.core.text.parseAsHtml
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ksnk.android.data.entity.QuestionEntity
+import com.ksnk.android.data.entity.ThemeEntity
 import com.ksnk.android.databinding.ViewPagerItemBinding
 import com.ksnk.android.ui.themesQuestions.ThemesQuestionViewModel
 
@@ -16,10 +18,16 @@ class ThemesQuestionViewHolder(
     private val viewPager: ViewPager2
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: QuestionEntity) {
+    @SuppressLint("SetTextI18n")
+    fun bind(item: QuestionEntity, position: Int) {
         with(binding) {
             textViewQuestion.text = item.question
+            val theme: ThemeEntity = viewModel.getThemeById(item.themeId)
+
+            textViewTheme.text = theme.name
+            textViewNumberTheme.text = "${position.plus(1)}. "
             textViewAnswer.text = item.answer.parseAsHtml()
+
             buttonAnswer.setOnClickListener {
                 rlAnswer.visibility = View.VISIBLE
                 buttonNext.visibility = View.VISIBLE
