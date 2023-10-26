@@ -4,12 +4,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ksnk.android.data.entity.QuestionEntity
+import com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment
 import com.ksnk.android.ui.themesQuestions.ThemesQuestionViewModel
 
 class ThemesQuestionAdapter(
     private val questionList: List<QuestionEntity>,
     private val viewModel: ThemesQuestionViewModel,
-    private val viewPager2: ViewPager2
+    private val viewPager2: ViewPager2,
+    private val fragment: ThemesQuestionFragment
 ) : RecyclerView.Adapter<ThemesQuestionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemesQuestionViewHolder =
@@ -19,5 +21,5 @@ class ThemesQuestionAdapter(
         questionList.size
 
     override fun onBindViewHolder(holder: ThemesQuestionViewHolder, position: Int) =
-        holder.bind(questionList[position], position)
+        holder.bind(questionList[position], position, questionList.size, fragment)
 }

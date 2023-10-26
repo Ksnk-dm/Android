@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.repository.RepositoryQuestion
 import com.ksnk.android.data.repository.RepositoryTheme
+import kotlinx.coroutines.runBlocking
 
 class QuestionViewModel(
     private val repositoryTheme: RepositoryTheme,
@@ -18,4 +19,9 @@ class QuestionViewModel(
     fun getAllQuestions(): LiveData<List<QuestionEntity>> = liveData {
         emitSource(repositoryQuestion.getAllQuestions())
     }
+
+    fun getQuestionByFavorite(): List<QuestionEntity> =
+        runBlocking {
+            repositoryQuestion.getQuestionByFavorite()
+        }
 }

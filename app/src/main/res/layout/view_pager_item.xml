@@ -56,22 +56,27 @@
             android:layout_below="@id/ll"
             android:layout_alignParentStart="false"
             android:layout_alignParentEnd="false"
-            android:layout_alignParentBottom="false"
             android:layout_marginStart="0dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
-            android:gravity="clip_horizontal|center_horizontal|center_vertical"
+            android:gravity="clip_horizontal|center_vertical"
             android:text="Питання на яке необхідно дати відповідь"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="italic" />
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/imageButtonFavorite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textViewQuestion"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="0dp"
             android:background="@android:color/transparent"
+            android:foregroundGravity="center"
             app:srcCompat="@drawable/baseline_favorite_border_24" />
     </RelativeLayout>
 

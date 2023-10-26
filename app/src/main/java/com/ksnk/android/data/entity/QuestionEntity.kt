@@ -12,5 +12,5 @@ data class QuestionEntity(
     val question: String,
     val answer: String,
     var isOpen: Boolean = false,
-    val isComplete: Boolean = false
+    var isFavorite: Boolean = false
 )
