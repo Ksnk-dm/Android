@@ -27,7 +27,7 @@ interface QuestionDao {
     @Query("SELECT * FROM questionEntity ORDER BY RANDOM() LIMIT 20")
     fun getRandomQuestions(): List<QuestionEntity>
 
-    @Query("SELECT COUNT(*) as total, SUM(CASE WHEN isOpen = 1 THEN 1 ELSE 0 END) as openCount, SUM(CASE WHEN isComplete = 1 THEN 1 ELSE 0 END) as completeCount FROM questionEntity WHERE themeId = :themeId")
+    @Query("SELECT COUNT(*) as total, SUM(CASE WHEN isOpen = 1 THEN 1 ELSE 0 END) as openCount, SUM(CASE WHEN isFavorite = 1 THEN 1 ELSE 0 END) as favoriteCount FROM questionEntity WHERE themeId = :themeId")
     fun getQuestionCountsForTheme(themeId: Long): LiveData<QuestionCounts>
 
     @Query("SELECT * FROM questionEntity WHERE isOpen = 1")
@@ -35,4 +35,7 @@ interface QuestionDao {
 
     @Query("SELECT * FROM questionEntity WHERE themeId = :themeId")
     fun getAllByTheme(themeId: Int?): List<QuestionEntity>
+
+    @Query("SELECT * FROM questionEntity WHERE isFavorite = 1")
+    fun getQuestionByFavorite(): List<QuestionEntity>
 }

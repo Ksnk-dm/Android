@@ -2,16 +2,14 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <!-- Установите цвет фона при нажатии и закруглите углы -->
             <solid android:color="#2D8C8C8C" />
-            <corners android:radius="14dp" /> <!-- Установите радиус закругления углов -->
+            <corners android:radius="14dp" />
         </shape>
     </item>
     <item>
         <shape>
-            <!-- Установите цвет фона в обычном состоянии (не нажатом) и закруглите углы -->
             <solid android:color="#0033B5E5" />
-            <corners android:radius="14dp" /> <!-- Установите радиус закругления углов -->
+            <corners android:radius="14dp" />
         </shape>
     </item>
 </selector>

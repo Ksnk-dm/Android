@@ -2,13 +2,14 @@ package com.ksnk.android.ui.question
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.ksnk.android.ui.base.BaseFragment
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentQuestionsBinding
 import com.ksnk.android.ext.navigateFragment
+import com.ksnk.android.ui.base.BaseFragment
+import com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
@@ -26,12 +27,19 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
                 })
             })
 
+            textViewFavoriteCount.text = viewModel.getQuestionByFavorite().size.toString()
+
             relativeLayoutThemes.setOnClickListener {
                 navigateFragment(R.id.action_questionFragment_to_themesFragment)
             }
 
             relativeLayoutRandom.setOnClickListener {
                 navigateFragment(R.id.action_questionFragment_to_questionThemeFragment)
+            }
+
+            relativeLayoutFavorite.setOnClickListener {
+                val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to 555L)
+                navigateFragment(R.id.action_questionFragment_to_questionThemeFragment, bundle)
             }
         }
     }

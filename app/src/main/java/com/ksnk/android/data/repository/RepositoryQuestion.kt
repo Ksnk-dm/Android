@@ -10,6 +10,7 @@ interface RepositoryQuestion {
     suspend fun insertQuestions(list: List<QuestionEntity>)
     suspend fun updateQuestion(questionEntity: QuestionEntity)
     suspend fun getAllQuestions(): LiveData<List<QuestionEntity>>
+    suspend fun getQuestionByFavorite(): List<QuestionEntity>
     suspend fun deleteQuestion(questionEntity: QuestionEntity)
     suspend fun deleteAllQuestions()
     fun getQuestionCountForTheme(themeId: Long): LiveData<QuestionCounts>

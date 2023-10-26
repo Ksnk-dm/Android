@@ -27,6 +27,9 @@ class RepositoryQuestionImpl(private val dao: QuestionDao) : RepositoryQuestion 
     override suspend fun getAllQuestions(): LiveData<List<QuestionEntity>> =
         withContext(Dispatchers.IO) { dao.getAll() }
 
+    override suspend fun getQuestionByFavorite(): List<QuestionEntity> =
+        withContext(Dispatchers.IO) { dao.getQuestionByFavorite()}
+
     override suspend fun deleteQuestion(questionEntity: QuestionEntity) =
         withContext(Dispatchers.IO) {
             dao.delete(questionEntity)
