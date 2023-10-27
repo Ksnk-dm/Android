@@ -24,6 +24,12 @@ interface QuestionDao {
     @Query("SELECT * FROM questionEntity")
     fun getAll(): LiveData<List<QuestionEntity>>
 
+    @Query("SELECT * FROM questionEntity")
+    fun getAllList(): List<QuestionEntity>
+
+    @Query("DELETE FROM questionEntity")
+    fun deleteAll()
+
     @Query("SELECT * FROM questionEntity ORDER BY RANDOM() LIMIT 20")
     fun getRandomQuestions(): List<QuestionEntity>
 

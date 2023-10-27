@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ksnk.android.R
+import com.ksnk.android.data.entity.LibraryEntity
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.entity.ThemeEntity
 import com.ksnk.android.databinding.FragmentSplashBinding
@@ -26,17 +27,15 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hideBottomNavigation()
-
 
         viewBinding.animationView.addAnimatorUpdateListener { valueAnimator ->
             val progress = valueAnimator.animatedFraction
             val currentFrame = (progress * viewBinding.animationView.maxFrame).toInt()
-            viewBinding.progressBar2.progress = currentFrame*2
+            viewBinding.progressBar2.progress = currentFrame * 5
 
             if (viewBinding.progressBar2.progress == 30) {
                 viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
-                    if (isInternetAvailable()) loadData()
+                    if (isInternetAvailable()) loadDataQuestions()
                     else if (questionList.isNotEmpty()) findNavController().navigate(R.id.action_splashFragment_to_questionFragment) else
                         findNavController().navigate(R.id.action_splashFragment_to_errorFragment)
                 })
@@ -44,7 +43,8 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
         }
     }
 
-    private fun loadData() {
+
+    private fun loadDataQuestions() {
         val database = FirebaseDatabase.getInstance()
         val reference = database.reference
 
@@ -52,6 +52,24 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val themes = mutableListOf<ThemeEntity>()
                 val questions = mutableListOf<QuestionEntity>()
+                val libraries = mutableListOf<LibraryEntity>()
+
+                for (librarySnapshot in dataSnapshot.child("library").children) {
+                    val libraryData = librarySnapshot.value as Map<String, Any>
+                    val title = libraryData["title"] as String
+                    val description = libraryData["description"] as String
+                    val image = libraryData["image"] as String
+                    val link = libraryData["link"] as String
+
+                    libraries.add(
+                        LibraryEntity(
+                            title = title,
+                            description = description,
+                            link = link,
+                            image = image
+                        )
+                    )
+                }
 
                 for (themeSnapshot in dataSnapshot.child(THEMES_PATH).children) {
                     val themeId = themeSnapshot.child(ID_PATH).getValue(String::class.java)
@@ -81,6 +99,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
                 if (themes.size > viewModel.getThemeCount()) viewModel.insertThemes(themes)
                 if (questions.size > viewModel.getQuestionCount()) viewModel.insertQuestions(questions)
+                if (libraries.size > viewModel.getLibraryCount()) viewModel.insertLibraryList(libraries)
 
                 runCatching {
                     findNavController().navigate(R.id.action_splashFragment_to_questionFragment)

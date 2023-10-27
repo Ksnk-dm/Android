@@ -16,12 +16,15 @@ interface ThemeDao {
     @Query("SELECT * FROM themeEntity WHERE themeId = :themeId")
     suspend fun getThemeById(themeId: Long): ThemeEntity
 
+    @Query("DELETE FROM themeEntity")
+    fun deleteAll()
+
     @Delete
     suspend fun delete(themeEntity: ThemeEntity)
 
     @Update
     suspend fun update(themeEntity: ThemeEntity)
 
-    @Query("SELECT * FROM themeEntity")
+    @Query("SELECT * FROM themeEntity ORDER BY themeId ASC")
     fun getAll(): LiveData<List<ThemeEntity>>
 }

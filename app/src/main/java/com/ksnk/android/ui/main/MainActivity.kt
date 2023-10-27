@@ -1,33 +1,50 @@
 package com.ksnk.android.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.ksnk.android.listeners.BottomNavigationListener
 import com.ksnk.android.R
 import com.ksnk.android.databinding.ActivityMainBinding
+import com.ksnk.android.listeners.BottomNavigationListener
+import com.ksnk.android.ui.base.BaseActivity
 
 
-class MainActivity : AppCompatActivity(), BottomNavigationListener {
+class MainActivity : BaseActivity(R.layout.activity_main), BottomNavigationListener {
 
     private val viewBinding by viewBinding(ActivityMainBinding::bind)
 
+    private val bottomNavBar by lazy {
+        viewBinding.bottomNavigationView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        viewBinding.bottomNavigationView.selectedItemId = R.id.questionsItem
+        val navController = findNavController(R.id.fragmentContainerView)
+        bottomNavBar.setupWithNavController(navController)
+
+        bottomNavBar.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.questionFragment -> navController.navigate(R.id.questionFragment)
+                R.id.settingFragment -> navController.navigate(R.id.settingFragment)
+                R.id.libraryFragment -> navController.navigate(R.id.libraryFragment)
+            }
+            true
+        }
     }
 
     override fun onBackPressed() {
-       // super.onBackPressed()
+        //super.onBackPressed()
+        // super.onBackPressed()
     }
 
     override fun hideBottomNavigationView() {
-        viewBinding.bottomNavigationView.visibility = View.GONE
+          bottomNavBar.visibility = View.GONE
     }
 
+    //
     override fun showBottomNavigationView() {
-        viewBinding.bottomNavigationView.visibility = View.VISIBLE
+          bottomNavBar.visibility = View.VISIBLE
     }
 }

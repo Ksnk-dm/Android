@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentQuestionsBinding
 import com.ksnk.android.ext.navigateFragment
+import com.ksnk.android.ext.showToast
 import com.ksnk.android.ui.base.BaseFragment
 import com.ksnk.android.ui.themesQuestions.ThemesQuestionFragment
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -19,10 +20,13 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showBottomNavigation()
+
         with(viewBinding) {
-            viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
+            viewModel.getAllQuestions().observe(this@QuestionsFragment, Observer { questionList ->
                 progressBar.max = questionList.size
-                viewModel.getQuestionCountForIsOpen().observe(requireActivity(), Observer { count ->
+                viewModel.getQuestionCountForIsOpen().observe(this@QuestionsFragment, Observer { count ->
                     progressBar.progress = count.size
                 })
             })
@@ -38,7 +42,14 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
             }
 
             relativeLayoutFavorite.setOnClickListener {
-                val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to 555L)
+                if (viewModel.getQuestionByFavorite().isEmpty()) showToast("Ви не маєте збережених питань.") else {
+                    val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to 555L)
+                    navigateFragment(R.id.action_questionFragment_to_questionThemeFragment, bundle)
+                }
+            }
+
+            buttonAllQuestion.setOnClickListener {
+                val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to 444L)
                 navigateFragment(R.id.action_questionFragment_to_questionThemeFragment, bundle)
             }
         }

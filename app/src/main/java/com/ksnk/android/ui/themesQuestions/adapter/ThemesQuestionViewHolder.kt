@@ -25,7 +25,7 @@ class ThemesQuestionViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(item: QuestionEntity, position: Int, questionListSize: Int, fragment: ThemesQuestionFragment) {
         with(binding) {
-            Log.d("MESSAGE::: ", position.toString() + " " + questionListSize.toString())
+
             if (position + 1 == questionListSize) {
                 buttonNext.text = "Повернутись"
                 buttonNext.setOnClickListener {
@@ -63,17 +63,17 @@ class ThemesQuestionViewHolder(
                     buttonNext.text = "Повернутись"
                     findNavController(fragment).popBackStack()
                 }
+            }
 
-                imageButtonFavorite.setOnClickListener {
-                    if (item.isFavorite) {
-                        item.isFavorite = false
-                        imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
-                        viewModel.updateQuestion(item)
-                    } else {
-                        item.isFavorite = true
-                        imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_24)
-                        viewModel.updateQuestion(item)
-                    }
+            imageButtonFavorite.setOnClickListener {
+                if (item.isFavorite) {
+                    item.isFavorite = false
+                    imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                    viewModel.updateQuestion(item)
+                } else {
+                    item.isFavorite = true
+                    imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                    viewModel.updateQuestion(item)
                 }
             }
         }

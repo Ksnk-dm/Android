@@ -19,6 +19,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
+        app:popUpToInclusive="true"
         android:name="com.ksnk.android.ui.question.QuestionsFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_questions">
@@ -28,6 +29,9 @@
         <action
             android:id="@+id/action_questionFragment_to_questionThemeFragment"
             app:destination="@id/questionThemeFragment" />
+        <action
+            android:id="@+id/action_questionFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 
     <fragment
@@ -55,4 +59,45 @@
             android:id="@+id/action_errorFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/acceptDialogFragment"
+        android:name="com.ksnk.android.ui.dialog.AcceptFragmentDialog"
+        android:label="AcceptDialogFragment"
+        tools:layout="@layout/fragment_dialog_accept" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.ksnk.android.ui.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_acceptDialogFragment"
+            app:destination="@id/acceptDialogFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.ksnk.android.ui.privacy.FragmentPrivacy"
+        android:label="PrivacyFragment"
+        tools:layout="@layout/fragment_privacy" >
+        <action
+            android:id="@+id/action_privacyFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.ksnk.android.ui.library.LibraryFragment"
+        android:label="LibraryFragment"
+        tools:layout="@layout/fragment_library" />
 </navigation>

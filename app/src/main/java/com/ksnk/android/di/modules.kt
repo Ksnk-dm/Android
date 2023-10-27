@@ -5,13 +5,18 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.ksnk.android.data.DataBase
+import com.ksnk.android.data.dao.LibraryDao
 import com.ksnk.android.data.dao.QuestionDao
 import com.ksnk.android.data.dao.ThemeDao
+import com.ksnk.android.data.repository.RepositoryLibrary
 import com.ksnk.android.data.repository.RepositoryQuestion
-import com.ksnk.android.data.repository.RepositoryQuestionImpl
 import com.ksnk.android.data.repository.RepositoryTheme
-import com.ksnk.android.data.repository.RepositoryThemeImpl
+import com.ksnk.android.data.repository.impl.RepositoryLibraryImpl
+import com.ksnk.android.data.repository.impl.RepositoryQuestionImpl
+import com.ksnk.android.data.repository.impl.RepositoryThemeImpl
+import com.ksnk.android.ui.library.LibraryViewModel
 import com.ksnk.android.ui.question.QuestionViewModel
+import com.ksnk.android.ui.setting.SettingViewModel
 import com.ksnk.android.ui.splash.SplashViewModel
 import com.ksnk.android.ui.themes.ThemesViewModel
 import com.ksnk.android.ui.themesQuestions.ThemesQuestionViewModel
@@ -35,9 +40,14 @@ val databaseModule = module {
         return database.themeDao
     }
 
+    fun provideLibraryDao(database: DataBase): LibraryDao {
+        return database.libraryDao
+    }
+
     single { provideDatabase(androidApplication()) }
     single { provideQuestionDao(get()) }
     single { provideThemeDao(get()) }
+    single { provideLibraryDao(get()) }
 }
 
 val sharedPrefsModule = module {
@@ -53,13 +63,21 @@ val repositoryModule = module {
     fun provideThemeRepository(dao: ThemeDao): RepositoryTheme {
         return RepositoryThemeImpl(dao)
     }
+
+    fun provideLibraryRepository(dao: LibraryDao): RepositoryLibrary {
+        return RepositoryLibraryImpl(dao)
+    }
+
+    single { provideLibraryRepository(get()) }
     single { provideQuestionRepository(get()) }
     single { provideThemeRepository(get()) }
 }
 
 val viewModelModule = module {
-    viewModel { SplashViewModel(get(), get(), get()) }
+    viewModel { SplashViewModel(get(), get(), get(), get()) }
     viewModel { ThemesViewModel(get(), get()) }
     viewModel { QuestionViewModel(get(), get()) }
     viewModel { ThemesQuestionViewModel(get(), get()) }
+    viewModel { SettingViewModel(get(), get(), get()) }
+    viewModel { LibraryViewModel(get()) }
 }

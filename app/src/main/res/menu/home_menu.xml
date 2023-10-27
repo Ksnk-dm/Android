@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/libraryFragment"
         android:icon="@drawable/baseline_library_books_24"
         app:showAsAction="never"
-        android:enabled="false"
-        android:title="TODO" />
+        android:title="library" />
 
     <item
-        android:id="@+id/questionsItem"
+        android:id="@+id/questionFragment"
         android:icon="@drawable/baseline_question_answer_24"
         app:showAsAction="never"
         android:enabled="true"
         android:title="Item" />
 
     <item
+        android:id="@+id/settingFragment"
         android:icon="@drawable/baseline_manage_accounts_24"
         app:showAsAction="never"
-        android:enabled="false"
         android:title="Item" />
 </menu>

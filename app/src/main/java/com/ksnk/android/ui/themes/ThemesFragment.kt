@@ -2,6 +2,7 @@ package com.ksnk.android.ui.themes
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,37 +18,45 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
 
     private val viewBinding by viewBinding(FragmentThemesBinding::bind)
     private val viewModel by viewModel<ThemesViewModel>()
-    private val listThemes = arrayListOf<Themes>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         with(viewBinding) {
 
             materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 
-            viewModel.getAllThemes().observe(requireActivity(), Observer { themesList ->
-                themesList.forEach {
-                    viewModel.getQuestionCountForTheme(it.themeId).observe(requireActivity(), Observer { count ->
-                        listThemes.add(
+            val mediatorLiveData = MediatorLiveData<List<Themes>>()
+
+            viewModel.getAllThemes().observe(this@ThemesFragment, Observer { themesList ->
+                val updatedListThemes = mutableListOf<Themes>()
+
+                themesList.forEach { theme ->
+                    val liveData = viewModel.getQuestionCountForTheme(theme.themeId)
+                    mediatorLiveData.addSource(liveData) { count ->
+                        updatedListThemes.add(
                             Themes(
-                                it.themeId,
-                                it.themeId,
-                                it.name,
+                                theme.themeId,
+                                theme.themeId,
+                                theme.name,
                                 allQuestions = count.total,
                                 openQuestions = count.openCount
                             )
                         )
-                        val adapter = ThemesAdapter(
-                            listThemes,
-                            this@ThemesFragment
-                        )
-                        rv.adapter = adapter
-                        rv.layoutManager = LinearLayoutManager(context)
-                        adapter.notifyDataSetChanged()
-                    })
+
+                        if (updatedListThemes.size == themesList.size) {
+                            mediatorLiveData.value = updatedListThemes
+                        }
+                    }
                 }
+            })
+
+            mediatorLiveData.observe(this@ThemesFragment, Observer { themesList ->
+                val adapter = ThemesAdapter(themesList, this@ThemesFragment)
+                rv.adapter = adapter
+                rv.layoutManager = LinearLayoutManager(context)
             })
         }
     }
