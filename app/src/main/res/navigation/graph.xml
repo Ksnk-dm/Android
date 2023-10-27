@@ -94,4 +94,10 @@
             android:id="@+id/action_privacyFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.ksnk.android.ui.library.LibraryFragment"
+        android:label="LibraryFragment"
+        tools:layout="@layout/fragment_library" />
 </navigation>

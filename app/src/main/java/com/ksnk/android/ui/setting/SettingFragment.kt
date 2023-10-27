@@ -33,7 +33,7 @@ class SettingFragment : BaseFragment(R.layout.fragment_setting) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        showBottomNavigation()
         with(viewBinding) {
             linearTheme.setOnClickListener {
                 showToast("Зміна теми в розробці")

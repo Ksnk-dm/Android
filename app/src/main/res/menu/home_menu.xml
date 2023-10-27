@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/libraryFragment"
         android:icon="@drawable/baseline_library_books_24"
         app:showAsAction="never"
-        android:enabled="false"
-        android:title="TODO" />
+        android:title="library" />
 
     <item
         android:id="@+id/questionFragment"

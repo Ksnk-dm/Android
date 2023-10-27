@@ -28,6 +28,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), BottomNavigationListe
             when (menuItem.itemId) {
                 R.id.questionFragment -> navController.navigate(R.id.questionFragment)
                 R.id.settingFragment -> navController.navigate(R.id.settingFragment)
+                R.id.libraryFragment -> navController.navigate(R.id.libraryFragment)
             }
             true
         }

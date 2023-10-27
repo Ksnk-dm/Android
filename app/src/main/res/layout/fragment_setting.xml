@@ -14,7 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
         app:titleTextColor="@color/white">
 
         <TextView
@@ -82,7 +81,7 @@
             android:id="@+id/linearTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:foreground="@drawable/selector_bg"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -117,7 +116,7 @@
             android:id="@+id/linearDelete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:foreground="@drawable/selector_bg"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -142,7 +141,7 @@
             android:id="@+id/linearRate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:foreground="@drawable/selector_bg"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -167,7 +166,7 @@
             android:id="@+id/linearPrivacy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:foreground="@drawable/selector_bg"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -176,7 +175,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Конфеденційність"
+                android:text="Конфіденційність"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
