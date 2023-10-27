@@ -12,6 +12,7 @@ import com.ksnk.android.data.repository.RepositoryQuestionImpl
 import com.ksnk.android.data.repository.RepositoryTheme
 import com.ksnk.android.data.repository.RepositoryThemeImpl
 import com.ksnk.android.ui.question.QuestionViewModel
+import com.ksnk.android.ui.setting.SettingViewModel
 import com.ksnk.android.ui.splash.SplashViewModel
 import com.ksnk.android.ui.themes.ThemesViewModel
 import com.ksnk.android.ui.themesQuestions.ThemesQuestionViewModel
@@ -62,4 +63,5 @@ val viewModelModule = module {
     viewModel { ThemesViewModel(get(), get()) }
     viewModel { QuestionViewModel(get(), get()) }
     viewModel { ThemesQuestionViewModel(get(), get()) }
+    viewModel { SettingViewModel(get(), get(), get()) }
 }

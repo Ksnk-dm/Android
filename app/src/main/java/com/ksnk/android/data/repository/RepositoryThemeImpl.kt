@@ -9,20 +9,13 @@ import kotlinx.coroutines.withContext
 class RepositoryThemeImpl(private val dao: ThemeDao) : RepositoryTheme {
 
     override suspend fun insertTheme(themeEntity: ThemeEntity) =
-        withContext(Dispatchers.IO) {
-            dao.insert(themeEntity)
-        }
+        withContext(Dispatchers.IO) { dao.insert(themeEntity) }
 
-    override suspend fun insertThemes(themeEntity: List<ThemeEntity>) {
-        withContext(Dispatchers.IO) {
-            dao.insertList(themeEntity)
-        }
-    }
+    override suspend fun insertThemes(themeEntity: List<ThemeEntity>) =
+        withContext(Dispatchers.IO) { dao.insertList(themeEntity) }
 
     override suspend fun updateTheme(themeEntity: ThemeEntity) =
-        withContext(Dispatchers.IO) {
-            dao.update(themeEntity)
-        }
+        withContext(Dispatchers.IO) { dao.update(themeEntity) }
 
     override suspend fun getAllThemes(): LiveData<List<ThemeEntity>> =
         withContext(Dispatchers.IO) { dao.getAll() }
@@ -31,11 +24,9 @@ class RepositoryThemeImpl(private val dao: ThemeDao) : RepositoryTheme {
         withContext(Dispatchers.IO) {dao.getThemeById(id)}
 
     override suspend fun deleteTheme(themeEntity: ThemeEntity) =
-        withContext(Dispatchers.IO) {
-            dao.delete(themeEntity)
-        }
+        withContext(Dispatchers.IO) { dao.delete(themeEntity) }
 
-    override suspend fun deleteAllThemes() {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteAllThemes() =
+        withContext(Dispatchers.IO) { dao.deleteAll() }
+
 }

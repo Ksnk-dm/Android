@@ -21,15 +21,16 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNavigation()
         with(viewBinding) {
 
             materialToolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
 
-            viewModel.getAllThemes().observe(requireActivity(), Observer { themesList ->
+            viewModel.getAllThemes().observe(this@ThemesFragment, Observer { themesList ->
                 themesList.forEach {
-                    viewModel.getQuestionCountForTheme(it.themeId).observe(requireActivity(), Observer { count ->
+                    viewModel.getQuestionCountForTheme(it.themeId).observe(this@ThemesFragment, Observer { count ->
                         listThemes.add(
                             Themes(
                                 it.themeId,

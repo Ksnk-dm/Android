@@ -19,10 +19,13 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showBottomNavigation()
+
         with(viewBinding) {
-            viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->
+            viewModel.getAllQuestions().observe(this@QuestionsFragment, Observer { questionList ->
                 progressBar.max = questionList.size
-                viewModel.getQuestionCountForIsOpen().observe(requireActivity(), Observer { count ->
+                viewModel.getQuestionCountForIsOpen().observe(this@QuestionsFragment, Observer { count ->
                     progressBar.progress = count.size
                 })
             })

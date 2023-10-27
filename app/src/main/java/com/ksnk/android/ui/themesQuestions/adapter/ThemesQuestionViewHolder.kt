@@ -63,17 +63,17 @@ class ThemesQuestionViewHolder(
                     buttonNext.text = "Повернутись"
                     findNavController(fragment).popBackStack()
                 }
+            }
 
-                imageButtonFavorite.setOnClickListener {
-                    if (item.isFavorite) {
-                        item.isFavorite = false
-                        imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
-                        viewModel.updateQuestion(item)
-                    } else {
-                        item.isFavorite = true
-                        imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_24)
-                        viewModel.updateQuestion(item)
-                    }
+            imageButtonFavorite.setOnClickListener {
+                if (item.isFavorite) {
+                    item.isFavorite = false
+                    imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                    viewModel.updateQuestion(item)
+                } else {
+                    item.isFavorite = true
+                    imageButtonFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                    viewModel.updateQuestion(item)
                 }
             }
         }

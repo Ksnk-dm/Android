@@ -26,13 +26,11 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hideBottomNavigation()
-
 
         viewBinding.animationView.addAnimatorUpdateListener { valueAnimator ->
             val progress = valueAnimator.animatedFraction
             val currentFrame = (progress * viewBinding.animationView.maxFrame).toInt()
-            viewBinding.progressBar2.progress = currentFrame*2
+            viewBinding.progressBar2.progress = currentFrame*5
 
             if (viewBinding.progressBar2.progress == 30) {
                 viewModel.getAllQuestions().observe(requireActivity(), Observer { questionList ->

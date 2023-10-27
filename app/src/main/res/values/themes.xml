@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Android" parent="Theme.MaterialComponents.NoActionBar">
+
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">#8BC34A</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -16,7 +18,12 @@
 
     <style name="CustomProgressBar" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/custom_progress_bar</item>
-        <item name="android:minHeight">10dp</item> <!-- Измените толщину полосы изменяя значение minHeight -->
-        <item name="android:maxHeight">10dp</item> <!-- То же самое, измените максимальную высоту -->
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxHeight">10dp</item>
+    </style>
+
+    <style name="RoundedAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/circular_border_themes</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>
