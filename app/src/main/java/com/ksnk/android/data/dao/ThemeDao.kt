@@ -25,6 +25,6 @@ interface ThemeDao {
     @Update
     suspend fun update(themeEntity: ThemeEntity)
 
-    @Query("SELECT * FROM themeEntity")
+    @Query("SELECT * FROM themeEntity ORDER BY themeId ASC")
     fun getAll(): LiveData<List<ThemeEntity>>
 }

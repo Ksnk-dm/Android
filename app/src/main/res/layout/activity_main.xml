@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="#323131"
-        android:visibility="visible"
+        android:visibility="gone"
         app:itemIconTint="@color/bottom_nav_item_unselected"
         app:itemTextColor="@color/bottom_nav_item_selected"
         app:labelVisibilityMode="unlabeled"
@@ -35,5 +35,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
         app:menu="@menu/home_menu"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

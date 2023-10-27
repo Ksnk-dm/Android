@@ -23,7 +23,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayoutThemes"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="110dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -36,10 +36,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="0dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -68,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:text="Питання до теми"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -76,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:text="Вивчайте питання, сгруповані за темами"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -107,7 +109,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circular_border"
         android:foreground="@drawable/selector_bg"
@@ -126,7 +128,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="57dp"
+                android:layout_height="60dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -148,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:text="20 випадкових питань"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -169,10 +171,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:foreground="@drawable/selector_bg"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circular_border"
+        android:foreground="@drawable/selector_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayoutRandom">
@@ -210,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:text="Збережені"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -223,11 +225,12 @@
 
                 <TextView
                     android:id="@+id/textViewFavoriteCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="right|fill_vertical"
                     android:text="1"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
@@ -240,9 +243,9 @@
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="126dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circular_border"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -289,18 +292,20 @@
             android:layout_marginEnd="100dp"
             android:text="Відкрити всі доступні питання одразу"
             android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="160dp"
-            android:layout_height="45dp"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="11dp"
             android:text="Розпочати"
             android:textColor="@color/white"
             android:textSize="12sp" />

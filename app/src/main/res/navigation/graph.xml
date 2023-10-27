@@ -19,6 +19,7 @@
 
     <fragment
         android:id="@+id/questionFragment"
+        app:popUpToInclusive="true"
         android:name="com.ksnk.android.ui.question.QuestionsFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_questions">
@@ -76,5 +77,21 @@
         <action
             android:id="@+id/action_settingFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.ksnk.android.ui.privacy.FragmentPrivacy"
+        android:label="PrivacyFragment"
+        tools:layout="@layout/fragment_privacy" >
+        <action
+            android:id="@+id/action_privacyFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

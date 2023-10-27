@@ -29,6 +29,7 @@ class ThemesFragment : BaseFragment(R.layout.fragment_themes) {
             }
 
             viewModel.getAllThemes().observe(this@ThemesFragment, Observer { themesList ->
+                listThemes.clear()
                 themesList.forEach {
                     viewModel.getQuestionCountForTheme(it.themeId).observe(this@ThemesFragment, Observer { count ->
                         listThemes.add(

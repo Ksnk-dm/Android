@@ -15,22 +15,35 @@ class MainActivity : BaseActivity(R.layout.activity_main), BottomNavigationListe
 
     private val viewBinding by viewBinding(ActivityMainBinding::bind)
 
+    private val bottomNavBar by lazy {
+        viewBinding.bottomNavigationView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val navController = findNavController(R.id.fragmentContainerView)
-        viewBinding.bottomNavigationView.setupWithNavController(navController)
+        bottomNavBar.setupWithNavController(navController)
+
+        bottomNavBar.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.questionFragment -> navController.navigate(R.id.questionFragment)
+                R.id.settingFragment -> navController.navigate(R.id.settingFragment)
+            }
+            true
+        }
     }
 
     override fun onBackPressed() {
+        //super.onBackPressed()
         // super.onBackPressed()
     }
 
     override fun hideBottomNavigationView() {
-          viewBinding.bottomNavigationView.visibility = View.GONE
+          bottomNavBar.visibility = View.GONE
     }
 
     //
     override fun showBottomNavigationView() {
-          viewBinding.bottomNavigationView.visibility = View.VISIBLE
+          bottomNavBar.visibility = View.VISIBLE
     }
 }

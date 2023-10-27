@@ -25,7 +25,7 @@ class ThemesQuestionViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(item: QuestionEntity, position: Int, questionListSize: Int, fragment: ThemesQuestionFragment) {
         with(binding) {
-            Log.d("MESSAGE::: ", position.toString() + " " + questionListSize.toString())
+
             if (position + 1 == questionListSize) {
                 buttonNext.text = "Повернутись"
                 buttonNext.setOnClickListener {
