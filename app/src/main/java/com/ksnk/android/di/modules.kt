@@ -8,9 +8,9 @@ import com.ksnk.android.data.DataBase
 import com.ksnk.android.data.dao.QuestionDao
 import com.ksnk.android.data.dao.ThemeDao
 import com.ksnk.android.data.repository.RepositoryQuestion
-import com.ksnk.android.data.repository.RepositoryQuestionImpl
+import com.ksnk.android.data.repository.impl.RepositoryQuestionImpl
 import com.ksnk.android.data.repository.RepositoryTheme
-import com.ksnk.android.data.repository.RepositoryThemeImpl
+import com.ksnk.android.data.repository.impl.RepositoryThemeImpl
 import com.ksnk.android.ui.question.QuestionViewModel
 import com.ksnk.android.ui.setting.SettingViewModel
 import com.ksnk.android.ui.splash.SplashViewModel

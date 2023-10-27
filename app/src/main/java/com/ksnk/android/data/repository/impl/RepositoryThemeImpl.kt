@@ -1,8 +1,9 @@
-package com.ksnk.android.data.repository
+package com.ksnk.android.data.repository.impl
 
 import androidx.lifecycle.LiveData
 import com.ksnk.android.data.dao.ThemeDao
 import com.ksnk.android.data.entity.ThemeEntity
+import com.ksnk.android.data.repository.RepositoryTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

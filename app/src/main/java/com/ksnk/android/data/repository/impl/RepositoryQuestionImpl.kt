@@ -1,8 +1,9 @@
-package com.ksnk.android.data.repository
+package com.ksnk.android.data.repository.impl
 
 import androidx.lifecycle.LiveData
 import com.ksnk.android.data.dao.QuestionDao
 import com.ksnk.android.data.entity.QuestionEntity
+import com.ksnk.android.data.repository.RepositoryQuestion
 import com.ksnk.android.model.QuestionCounts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -20,6 +21,9 @@ class RepositoryQuestionImpl(private val dao: QuestionDao) : RepositoryQuestion 
 
     override suspend fun getAllQuestions(): LiveData<List<QuestionEntity>> =
         withContext(Dispatchers.IO) { dao.getAll() }
+
+    override suspend fun getAllQuestionList(): List<QuestionEntity> =
+        withContext(Dispatchers.IO) { dao.getAllList() }
 
     override suspend fun getQuestionByFavorite(): List<QuestionEntity> =
         withContext(Dispatchers.IO) { dao.getQuestionByFavorite() }

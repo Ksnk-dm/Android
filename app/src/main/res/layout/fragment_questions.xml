@@ -261,7 +261,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:text="Всі питання:"
             android:textColor="@color/white"
@@ -275,7 +275,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/rounder_shape_green"
             android:scaleType="center"
             app:srcCompat="@drawable/baseline_speaker_notes_24" />
@@ -287,7 +287,7 @@
             android:layout_below="@+id/textView3"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="100dp"
             android:text="Відкрити всі доступні питання одразу"
@@ -295,7 +295,7 @@
             android:textSize="12sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonAllQuestion"
             android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView6"
@@ -306,6 +306,8 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="11dp"
+            android:background="@drawable/rounded_button"
+            android:foreground="@drawable/selector_bg"
             android:text="Розпочати"
             android:textColor="@color/white"
             android:textSize="12sp" />

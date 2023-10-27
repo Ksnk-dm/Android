@@ -1,6 +1,7 @@
 package com.ksnk.android.ui.themesQuestions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -33,11 +34,11 @@ class ThemesQuestionFragment : BaseFragment(R.layout.fragment_theme_questions) {
     }
 
     private fun initAdapters(themeId: Int) {
-
         with(viewBinding) {
             val questionList = when (themeId) {
                 777 -> viewModel.getRandomQuestions()
                 555 -> viewModel.getQuestionByFavorite()
+                444 -> viewModel.getAllQuestionList()
                 else -> viewModel.getAllByTheme(themeId)
             }
 

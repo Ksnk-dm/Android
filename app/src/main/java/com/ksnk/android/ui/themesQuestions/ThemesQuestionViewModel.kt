@@ -1,6 +1,8 @@
 package com.ksnk.android.ui.themesQuestions
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.repository.RepositoryQuestion
@@ -15,6 +17,15 @@ class ThemesQuestionViewModel(
 
     fun getAllByTheme(themeId: Int?): List<QuestionEntity> =
         runBlocking { repositoryQuestion.getAllByTheme(themeId) }
+
+    fun getAllQuestion(): LiveData<List<QuestionEntity>> =
+        liveData {
+            emitSource(repositoryQuestion.getAllQuestions())
+        }
+
+    fun getAllQuestionList(): List<QuestionEntity> =
+        runBlocking { repositoryQuestion.getAllQuestionList() }
+
 
     fun updateQuestion(question: QuestionEntity) =
         viewModelScope.launch { repositoryQuestion.updateQuestion(question) }

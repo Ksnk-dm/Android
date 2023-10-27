@@ -24,6 +24,9 @@ interface QuestionDao {
     @Query("SELECT * FROM questionEntity")
     fun getAll(): LiveData<List<QuestionEntity>>
 
+    @Query("SELECT * FROM questionEntity")
+    fun getAllList(): List<QuestionEntity>
+
     @Query("DELETE FROM questionEntity")
     fun deleteAll()
 
