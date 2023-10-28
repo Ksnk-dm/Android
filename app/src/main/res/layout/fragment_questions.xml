@@ -24,7 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Питання"
+        android:text="@string/questions"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -80,7 +81,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Питання до теми"
+                        android:text="@string/question_theme"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -88,7 +89,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Вивчайте питання, сгруповані за темами"
+                        android:text="@string/question_theme_description"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -99,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Прогрес:"
+                android:text="@string/progress"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -160,7 +161,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="20 випадкових питань"
+                        android:text="@string/random_questions"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -168,7 +169,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Випробуйте себе в режимі випадкового формування питань"
+                        android:text="@string/random_question_description"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -222,7 +223,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Збережені"
+                        android:text="@string/saved"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -230,22 +231,22 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Зберігайте найскладніші питання"
+                        android:text="@string/saved_description"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/textViewFavoriteCount"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:gravity="right|fill_vertical"
-                    android:text="1"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="RtlHardcoded" />
 
             </LinearLayout>
 
@@ -276,7 +277,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:text="Всі питання:"
+            android:text="@string/all"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -303,7 +304,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="100dp"
-            android:text="Відкрити всі доступні питання одразу"
+            android:text="@string/all_description"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
@@ -321,7 +322,7 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/rounded_button"
             android:foreground="@drawable/selector_bg"
-            android:text="Розпочати"
+            android:text="@string/start"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />

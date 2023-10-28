@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Питання"
+            android:text="@string/question"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
