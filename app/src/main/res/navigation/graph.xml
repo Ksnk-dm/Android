@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_graph"
     app:startDestination="@id/splashFragment">
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.ksnk.android.ui.splash.SplashFragment"
@@ -19,7 +20,6 @@
 
     <fragment
         android:id="@+id/questionFragment"
-        app:popUpToInclusive="true"
         android:name="com.ksnk.android.ui.question.QuestionsFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_questions">
@@ -54,7 +54,7 @@
         android:id="@+id/errorFragment"
         android:name="com.ksnk.android.ui.error.ErrorFragment"
         android:label="ErrorFragment"
-        tools:layout="@layout/fragment_error" >
+        tools:layout="@layout/fragment_error">
         <action
             android:id="@+id/action_errorFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
@@ -70,7 +70,7 @@
         android:id="@+id/settingFragment"
         android:name="com.ksnk.android.ui.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting" >
+        tools:layout="@layout/fragment_setting">
         <action
             android:id="@+id/action_settingFragment_to_acceptDialogFragment"
             app:destination="@id/acceptDialogFragment" />
@@ -89,7 +89,7 @@
         android:id="@+id/privacyFragment"
         android:name="com.ksnk.android.ui.privacy.FragmentPrivacy"
         android:label="PrivacyFragment"
-        tools:layout="@layout/fragment_privacy" >
+        tools:layout="@layout/fragment_privacy">
         <action
             android:id="@+id/action_privacyFragment_to_settingFragment"
             app:destination="@id/settingFragment" />

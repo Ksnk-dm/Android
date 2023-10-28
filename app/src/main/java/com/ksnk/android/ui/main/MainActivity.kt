@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.gms.ads.MobileAds
 import com.ksnk.android.R
 import com.ksnk.android.databinding.ActivityMainBinding
 import com.ksnk.android.listeners.BottomNavigationListener
@@ -32,6 +33,8 @@ class MainActivity : BaseActivity(R.layout.activity_main), BottomNavigationListe
             }
             true
         }
+
+        MobileAds.initialize(this) {}
     }
 
     override fun onBackPressed() {

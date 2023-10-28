@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="@color/bg">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:adSize="LARGE_BANNER"
+        app:adUnitId="ca-app-pub-2981423664535117/2476949558"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -242,6 +254,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
@@ -310,6 +323,9 @@
             android:foreground="@drawable/selector_bg"
             android:text="Розпочати"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

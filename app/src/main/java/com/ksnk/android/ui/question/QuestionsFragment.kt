@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.gms.ads.AdRequest
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentQuestionsBinding
 import com.ksnk.android.ext.navigateFragment
@@ -24,6 +25,9 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
         showBottomNavigation()
 
         with(viewBinding) {
+
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
             viewModel.getAllQuestions().observe(this@QuestionsFragment, Observer { questionList ->
                 progressBar.max = questionList.size
                 viewModel.getQuestionCountForIsOpen().observe(this@QuestionsFragment, Observer { count ->
@@ -38,6 +42,7 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
             }
 
             relativeLayoutRandom.setOnClickListener {
+                mInterstitialAd?.show(requireActivity())
                 navigateFragment(R.id.action_questionFragment_to_questionThemeFragment)
             }
 
@@ -49,8 +54,10 @@ class QuestionsFragment : BaseFragment(R.layout.fragment_questions) {
             }
 
             buttonAllQuestion.setOnClickListener {
+                mInterstitialAd?.show(requireActivity())
                 val bundle = bundleOf(ThemesQuestionFragment.THEME_ID_KEY to 444L)
                 navigateFragment(R.id.action_questionFragment_to_questionThemeFragment, bundle)
+
             }
         }
     }
