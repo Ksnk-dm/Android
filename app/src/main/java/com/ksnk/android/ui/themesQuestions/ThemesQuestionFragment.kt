@@ -6,6 +6,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ksnk.android.R
 import com.ksnk.android.databinding.FragmentThemeQuestionsBinding
@@ -22,6 +23,7 @@ class ThemesQuestionFragment : BaseFragment(R.layout.fragment_theme_questions) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideBottomNavigation()
+        MobileAds.initialize(requireContext()) {}
         with(viewBinding) {
 
             materialToolbar.setNavigationOnClickListener {

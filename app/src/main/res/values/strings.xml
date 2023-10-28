@@ -59,4 +59,27 @@
 <p><strong>Contact Us</strong></p>
 <p>If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at ukrkosenko@gmail.com.</p>]]>
     </string>
+
+    <string name="question">ПИТАННЯ</string>
+    <string name="theme">ТЕМИ</string>
+    <string name="library">БІБЛІОТЕКА</string>
+    <string name="privacy">Конфіденційність</string>
+    <string name="questions">Питання</string>
+    <string name="question_theme">Питання до теми</string>
+    <string name="question_theme_description">Вивчайте питання, сгруповані за темами</string>
+    <string name="progress">Прогрес:</string>
+    <string name="random_questions">20 випадкових питань</string>
+    <string name="random_question_description">Випробуйте себе в режимі випадкового формування питань</string>
+    <string name="saved">Збережені</string>
+    <string name="saved_description">Зберігайте найскладніші питання</string>
+    <string name="all">Всі питання:</string>
+    <string name="start">Розпочати</string>
+    <string name="all_description">Відкрити всі доступні питання одразу</string>
+
+    <string name="dialog_title">Ви впевнені: що бажаєте видалити всі данні?</string>
+    <string name="cancel">Відміна</string>
+    <string name="next">Продовжити</string>
+    <string name="button_return">Повторити</string>
+
+    <string name="no_internet">НЕМАЄ ПІДКЛЮЧЕННЯ</string>
 </resources>

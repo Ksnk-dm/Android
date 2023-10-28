@@ -1,7 +1,6 @@
 package com.ksnk.android.ui.themesQuestions.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.core.text.parseAsHtml
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.ads.AdRequest
 import com.ksnk.android.R
 import com.ksnk.android.data.entity.QuestionEntity
 import com.ksnk.android.data.entity.ThemeEntity
@@ -25,6 +25,9 @@ class ThemesQuestionViewHolder(
     @SuppressLint("SetTextI18n")
     fun bind(item: QuestionEntity, position: Int, questionListSize: Int, fragment: ThemesQuestionFragment) {
         with(binding) {
+
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
 
             if (position + 1 == questionListSize) {
                 buttonNext.text = "Повернутись"
